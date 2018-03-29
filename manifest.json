@@ -5,15 +5,23 @@
 	"version": "1.0",
 	"browser_action": {
 		// "default_icon": "img.png",
-		"default_popup": "popup.html",
+		// "default_popup": "popup.html",
 		"default_title": "Changes Made"
 	},
 	"content_scripts": [
 		{
 			"matches": ["https://www.producteev.com/workspace/*"],
-			"js": ["onpage.js"]
+			"all_frames": true,
+			"js": ["jquery-3.3.1.min.js", "onpage.js"]
+			// "css": []
 		}
-	]
+	],
+	"permissions": [
+		"activeTab"
+	],
+	"background": {
+		"scripts": ["jquery-3.3.1.min.js", "background.js"]
+	}
 }
 
 // https://developer.chrome.com/extensions/content_scripts

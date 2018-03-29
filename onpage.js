@@ -1,8 +1,16 @@
-var commentTextarea = document.getElementById('comment-textarea').firstChild;
+jQuery(function($){
+	chrome.runtime.onMessage.addListener( //communicate from background.js
+		function(request, sender, sendResponse) {
+			if( request.message === "clicked_browser_action" ) {
+				// var firstHref = jQuery("a[href^='http']").eq(0).attr("href");
 
-// Get the current text within the element:
-var text = commentTextarea.textContent;
+				// console.log(firstHref);
 
-// You can do whatever you want with the text (in this case replace)
-// but you must assign the result back to the element
-commentTextarea.textContent = text.replace(text, "Changes Made");		
+				$("#comment-textarea").text("@Rachelle Garaffa - changes made");
+				$(".btn-post").click();
+
+				// chrome.runtime.sendMessage({"message": "open_new_tab", "url": firstHref}); //communicate to background.js
+			}
+		}
+	);
+});
